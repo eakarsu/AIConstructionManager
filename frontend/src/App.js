@@ -3,7 +3,28 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import FeaturePage from './pages/FeaturePage';
+import Projects from './pages/Projects';
+import ChangeOrders from './pages/ChangeOrders';
+import DailyReports from './pages/DailyReports';
+import AICenter from './pages/AICenter';
 import Navbar from './components/Navbar';
+
+// // === Batch 02 Gaps & Frontend Mounts ===
+import CfMultiModalProgressTracking from './pages/CfMultiModalProgressTracking';
+import CfPredictiveProjectCompletion from './pages/CfPredictiveProjectCompletion';
+import CfAutonomousSiteMonitoring from './pages/CfAutonomousSiteMonitoring';
+import CfSupplyChainOptimization from './pages/CfSupplyChainOptimization';
+import CfWorkerWellnessFatigueMonitoring from './pages/CfWorkerWellnessFatigueMonitoring';
+import CfPermittingRegulatoryPrediction from './pages/CfPermittingRegulatoryPrediction';
+import GapEquipmentPermitsSubmittalsWarrantiesLackPairedAiEndpo from './pages/GapEquipmentPermitsSubmittalsWarrantiesLackPairedAiEndpo';
+import GapProgressphotosLacksVisionBasedPhotoAnalysisDelayQuali from './pages/GapProgressphotosLacksVisionBasedPhotoAnalysisDelayQuali';
+import GapMeetingminutesLacksSummarizationOrActionItemExtraction from './pages/GapMeetingminutesLacksSummarizationOrActionItemExtraction';
+import GapPunchlistLacksAiPrioritizationOrCloseoutTimelinePredi from './pages/GapPunchlistLacksAiPrioritizationOrCloseoutTimelinePredi';
+import GapNoSupplierVendorSourcingWorkflow from './pages/GapNoSupplierVendorSourcingWorkflow';
+import GapNoFieldWorkerMobileAppOrRealTimeGpsTracking from './pages/GapNoFieldWorkerMobileAppOrRealTimeGpsTracking';
+import GapNoPaymentAccountingModule from './pages/GapNoPaymentAccountingModule';
+import GapNoThirdPartyTrimbleProcoreRevitIntegrations from './pages/GapNoThirdPartyTrimbleProcoreRevitIntegrations';
+import GapNoWebhooks from './pages/GapNoWebhooks';
 
 const globalStyles = `
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -135,6 +156,11 @@ function App() {
         <Routes>
           <Route path="/login" element={isAuth ? <Navigate to="/" /> : <Login onLogin={handleLogin} />} />
           <Route path="/" element={isAuth ? <Dashboard features={features} /> : <Navigate to="/login" />} />
+          {/* Dedicated full-featured pages */}
+          <Route path="/projects-full" element={isAuth ? <Projects /> : <Navigate to="/login" />} />
+          <Route path="/change-orders-full" element={isAuth ? <ChangeOrders /> : <Navigate to="/login" />} />
+          <Route path="/daily-reports-full" element={isAuth ? <DailyReports /> : <Navigate to="/login" />} />
+          <Route path="/ai-center" element={isAuth ? <AICenter /> : <Navigate to="/login" />} />
           {features.map((f) => (
             <Route
               key={f.key}
@@ -143,7 +169,24 @@ function App() {
             />
           ))}
           <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        
+        {/* // === Batch 02 Gaps & Frontend Mounts === */}
+        <Route path="/cf/multi-modal-progress-tracking" element={<CfMultiModalProgressTracking />} />
+        <Route path="/cf/predictive-project-completion" element={<CfPredictiveProjectCompletion />} />
+        <Route path="/cf/autonomous-site-monitoring" element={<CfAutonomousSiteMonitoring />} />
+        <Route path="/cf/supply-chain-optimization" element={<CfSupplyChainOptimization />} />
+        <Route path="/cf/worker-wellness-fatigue-monitoring" element={<CfWorkerWellnessFatigueMonitoring />} />
+        <Route path="/cf/permitting-regulatory-prediction" element={<CfPermittingRegulatoryPrediction />} />
+        <Route path="/gap/equipment-permits-submittals-warranties-lack-paired-ai-endpo" element={<GapEquipmentPermitsSubmittalsWarrantiesLackPairedAiEndpo />} />
+        <Route path="/gap/progressphotos-lacks-vision-based-photo-analysis-delay-quali" element={<GapProgressphotosLacksVisionBasedPhotoAnalysisDelayQuali />} />
+        <Route path="/gap/meetingminutes-lacks-summarization-or-action-item-extraction" element={<GapMeetingminutesLacksSummarizationOrActionItemExtraction />} />
+        <Route path="/gap/punchlist-lacks-ai-prioritization-or-closeout-timeline-predi" element={<GapPunchlistLacksAiPrioritizationOrCloseoutTimelinePredi />} />
+        <Route path="/gap/no-supplier-vendor-sourcing-workflow" element={<GapNoSupplierVendorSourcingWorkflow />} />
+        <Route path="/gap/no-field-worker-mobile-app-or-real-time-gps-tracking" element={<GapNoFieldWorkerMobileAppOrRealTimeGpsTracking />} />
+        <Route path="/gap/no-payment-accounting-module" element={<GapNoPaymentAccountingModule />} />
+        <Route path="/gap/no-third-party-trimble-procore-revit-integrations" element={<GapNoThirdPartyTrimbleProcoreRevitIntegrations />} />
+        <Route path="/gap/no-webhooks" element={<GapNoWebhooks />} />
+      </Routes>
       </Router>
     </>
   );

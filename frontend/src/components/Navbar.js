@@ -82,6 +82,13 @@ export default function Navbar({ onLogout, features }) {
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
+  // Apply pass 4: prepend AI Center virtual entry so the centralised AI tools
+  // (summarize-meeting / prioritize-punchlist / analyze-progress-photo) are reachable.
+  const navFeatures = [
+    { key: 'ai-center', label: 'AI Center', icon: '🤖', color: '#a78bfa' },
+    ...(features || []),
+  ];
+
   return (
     <nav style={styles.nav}>
       <div style={styles.brand} onClick={() => navigate('/')}>
@@ -89,7 +96,7 @@ export default function Navbar({ onLogout, features }) {
         <span style={styles.brandText}>AI Construction Manager</span>
       </div>
       <div style={styles.menuContainer}>
-        {features.map((f) => (
+        {navFeatures.map((f) => (
           <div
             key={f.key}
             style={styles.menuItem(location.pathname === `/${f.key}`, f.color)}

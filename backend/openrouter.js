@@ -8,6 +8,7 @@ async function aiQuery(systemPrompt, userPrompt) {
   if (!apiKey || apiKey === 'your_openrouter_api_key_here') {
     return {
       success: false,
+      noKey: true,
       result: 'OpenRouter API key not configured. Please add your API key to the .env file.',
     };
   }
