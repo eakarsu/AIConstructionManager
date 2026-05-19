@@ -25,6 +25,7 @@ import GapNoFieldWorkerMobileAppOrRealTimeGpsTracking from './pages/GapNoFieldWo
 import GapNoPaymentAccountingModule from './pages/GapNoPaymentAccountingModule';
 import GapNoThirdPartyTrimbleProcoreRevitIntegrations from './pages/GapNoThirdPartyTrimbleProcoreRevitIntegrations';
 import GapNoWebhooks from './pages/GapNoWebhooks';
+import CustomViewsPage from './pages/CustomViewsPage';
 
 const globalStyles = `
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -186,6 +187,7 @@ function App() {
         <Route path="/gap/no-payment-accounting-module" element={<GapNoPaymentAccountingModule />} />
         <Route path="/gap/no-third-party-trimble-procore-revit-integrations" element={<GapNoThirdPartyTrimbleProcoreRevitIntegrations />} />
         <Route path="/gap/no-webhooks" element={<GapNoWebhooks />} />
+        <Route path="/custom-views" element={isAuth ? <CustomViewsPage /> : <Navigate to="/login" />} />
       </Routes>
       </Router>
     </>

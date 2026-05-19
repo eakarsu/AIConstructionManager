@@ -86,6 +86,7 @@ export default function Navbar({ onLogout, features }) {
   // (summarize-meeting / prioritize-punchlist / analyze-progress-photo) are reachable.
   const navFeatures = [
     { key: 'ai-center', label: 'AI Center', icon: '🤖', color: '#a78bfa' },
+    { key: 'custom-views', label: 'Project Views', icon: '📊', color: '#22d3ee' },
     ...(features || []),
   ];
 

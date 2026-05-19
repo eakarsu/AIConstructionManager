@@ -83,6 +83,12 @@ app.use('/api/gap-no-third-party-trimble-procore-revit-integrations', require('.
 // // === Batch 02 Gaps & Frontend Mounts ===
 app.use('/api/gap-no-webhooks', require('./routes/gap_no_webhooks'));
 
+// === Custom Views (mounted BEFORE any 404 handler) ===
+app.use('/api/custom-views', require('./routes/customViews'));
+
+// Catch-all 404 for unknown /api routes
+app.use('/api/*', (req, res) => res.status(404).json({ error: 'Not found', path: req.originalUrl }));
+
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
