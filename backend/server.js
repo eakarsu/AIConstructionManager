@@ -37,6 +37,7 @@ app.use('/api/progress-photos', require('./routes/progressPhotos'));
 app.use('/api/warranties', require('./routes/warranties'));
 app.use('/api/environmental', require('./routes/environmental'));
 app.use('/api/bim', require('./routes/bim'));
+app.use('/api/crane-pick-plan-review', require('./routes/cranePickPlanReview'));
 
 // AI endpoints
 app.use('/api/ai', require('./routes/ai'));

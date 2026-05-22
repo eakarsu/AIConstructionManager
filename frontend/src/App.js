@@ -27,6 +27,11 @@ import GapNoThirdPartyTrimbleProcoreRevitIntegrations from './pages/GapNoThirdPa
 import GapNoWebhooks from './pages/GapNoWebhooks';
 import CustomViewsPage from './pages/CustomViewsPage';
 
+import CodexCustomVizFeature from './pages/CodexCustomVizFeature';
+import CodexOperationsFeature from './pages/CodexOperationsFeature';
+
+import TimelineView from './pages/TimelineView';
+
 const globalStyles = `
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -131,6 +136,9 @@ const features = [
     columns: ['project_name','model_name','discipline','version','clash_count','resolved_count','author','software','lod_level','file_size','last_updated','status','notes'],
     tableColumns: ['project_name','model_name','discipline','clash_count','resolved_count','status'],
     ai: { endpoint: '/bim/ai-analyze', fields: ['project_name','disciplines','clash_description','project_phase'], title: 'AI BIM Coordination Analysis' } },
+  { key: 'crane-pick-plan-review', label: 'Crane Pick Plan Review', icon: '🏗️', color: '#f59e0b', api: '/crane-pick-plan-review',
+    columns: ['project_name','lift_id','crane','load_weight','radius_ft','wind_limit_mph','readiness','status','mitigation'],
+    tableColumns: ['project_name','lift_id','crane','load_weight','readiness','status'] },
 ];
 
 function App() {
@@ -155,6 +163,10 @@ function App() {
       <Router>
         {isAuth && <Navbar onLogout={handleLogout} features={features} />}
         <Routes>
+        <Route path="/insights/timeline" element={<TimelineView />} />
+        <Route path="/codex/custom-viz" element={<CodexCustomVizFeature />} />
+        <Route path="/codex/operations" element={<CodexOperationsFeature />} />
+
           <Route path="/login" element={isAuth ? <Navigate to="/" /> : <Login onLogin={handleLogin} />} />
           <Route path="/" element={isAuth ? <Dashboard features={features} /> : <Navigate to="/login" />} />
           {/* Dedicated full-featured pages */}
