@@ -16,15 +16,6 @@ import CfAutonomousSiteMonitoring from './pages/CfAutonomousSiteMonitoring';
 import CfSupplyChainOptimization from './pages/CfSupplyChainOptimization';
 import CfWorkerWellnessFatigueMonitoring from './pages/CfWorkerWellnessFatigueMonitoring';
 import CfPermittingRegulatoryPrediction from './pages/CfPermittingRegulatoryPrediction';
-import GapEquipmentPermitsSubmittalsWarrantiesLackPairedAiEndpo from './pages/GapEquipmentPermitsSubmittalsWarrantiesLackPairedAiEndpo';
-import GapProgressphotosLacksVisionBasedPhotoAnalysisDelayQuali from './pages/GapProgressphotosLacksVisionBasedPhotoAnalysisDelayQuali';
-import GapMeetingminutesLacksSummarizationOrActionItemExtraction from './pages/GapMeetingminutesLacksSummarizationOrActionItemExtraction';
-import GapPunchlistLacksAiPrioritizationOrCloseoutTimelinePredi from './pages/GapPunchlistLacksAiPrioritizationOrCloseoutTimelinePredi';
-import GapNoSupplierVendorSourcingWorkflow from './pages/GapNoSupplierVendorSourcingWorkflow';
-import GapNoFieldWorkerMobileAppOrRealTimeGpsTracking from './pages/GapNoFieldWorkerMobileAppOrRealTimeGpsTracking';
-import GapNoPaymentAccountingModule from './pages/GapNoPaymentAccountingModule';
-import GapNoThirdPartyTrimbleProcoreRevitIntegrations from './pages/GapNoThirdPartyTrimbleProcoreRevitIntegrations';
-import GapNoWebhooks from './pages/GapNoWebhooks';
 import CustomViewsPage from './pages/CustomViewsPage';
 
 import CodexCustomVizFeature from './pages/CodexCustomVizFeature';
@@ -190,15 +181,6 @@ function App() {
         <Route path="/cf/supply-chain-optimization" element={<CfSupplyChainOptimization />} />
         <Route path="/cf/worker-wellness-fatigue-monitoring" element={<CfWorkerWellnessFatigueMonitoring />} />
         <Route path="/cf/permitting-regulatory-prediction" element={<CfPermittingRegulatoryPrediction />} />
-        <Route path="/gap/equipment-permits-submittals-warranties-lack-paired-ai-endpo" element={<GapEquipmentPermitsSubmittalsWarrantiesLackPairedAiEndpo />} />
-        <Route path="/gap/progressphotos-lacks-vision-based-photo-analysis-delay-quali" element={<GapProgressphotosLacksVisionBasedPhotoAnalysisDelayQuali />} />
-        <Route path="/gap/meetingminutes-lacks-summarization-or-action-item-extraction" element={<GapMeetingminutesLacksSummarizationOrActionItemExtraction />} />
-        <Route path="/gap/punchlist-lacks-ai-prioritization-or-closeout-timeline-predi" element={<GapPunchlistLacksAiPrioritizationOrCloseoutTimelinePredi />} />
-        <Route path="/gap/no-supplier-vendor-sourcing-workflow" element={<GapNoSupplierVendorSourcingWorkflow />} />
-        <Route path="/gap/no-field-worker-mobile-app-or-real-time-gps-tracking" element={<GapNoFieldWorkerMobileAppOrRealTimeGpsTracking />} />
-        <Route path="/gap/no-payment-accounting-module" element={<GapNoPaymentAccountingModule />} />
-        <Route path="/gap/no-third-party-trimble-procore-revit-integrations" element={<GapNoThirdPartyTrimbleProcoreRevitIntegrations />} />
-        <Route path="/gap/no-webhooks" element={<GapNoWebhooks />} />
         <Route path="/custom-views" element={isAuth ? <CustomViewsPage /> : <Navigate to="/login" />} />
       </Routes>
       </Router>

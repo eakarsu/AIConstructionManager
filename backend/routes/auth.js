@@ -2,15 +2,17 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
+const authenticateToken = require('../middleware/auth');
 require('dotenv').config({ path: __dirname + '/../../.env' });
 
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
+    if (!name || !email || typeof password !== 'string' || password.length < 12) return res.status(400).json({ error: 'A 12-character password is required' });
     const hash = await bcrypt.hash(password, 10);
     const result = await pool.query(
       'INSERT INTO users (name, email, password, role) VALUES ($1,$2,$3,$4) RETURNING id, name, email, role',
-      [name, email, hash, role || 'manager']
+      [name, email, hash, 'worker']
     );
     res.json(result.rows[0]);
   } catch (err) {
@@ -37,6 +39,10 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+router.get('/me', authenticateToken, (req, res) => {
+  res.json({ user: req.user });
 });
 
 module.exports = router;
