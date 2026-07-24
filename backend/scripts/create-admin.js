@@ -1,0 +1,32 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
+
+const bcrypt = require('bcryptjs');
+const pool = require('../db');
+
+async function main() {
+  if (!['1', 'true'].includes(String(process.env.ALLOW_SCHEMA_MIGRATION || '').toLowerCase())) {
+    throw new Error('Refusing admin bootstrap without ALLOW_SCHEMA_MIGRATION=1');
+  }
+
+  const email = process.env.PROVISION_ADMIN_EMAIL;
+  const password = process.env.PROVISION_ADMIN_PASSWORD;
+  if (!email || !password) throw new Error('PROVISION_ADMIN_EMAIL and PROVISION_ADMIN_PASSWORD are required');
+
+  const passwordHash = await bcrypt.hash(password, 10);
+  await pool.query(
+    `INSERT INTO users (email, password, name, role)
+     VALUES ($1, $2, $3, 'admin')
+     ON CONFLICT (email) DO UPDATE
+     SET password = EXCLUDED.password, name = EXCLUDED.name, role = 'admin', updated_at = NOW()`,
+    [email, passwordHash, process.env.PROVISION_ADMIN_NAME || 'Runtime Administrator']
+  );
+}
+
+main()
+  .then(() => pool.end())
+  .catch(async (error) => {
+    console.error(error.message);
+    await pool.end().catch(() => {});
+    process.exit(1);
+  });
