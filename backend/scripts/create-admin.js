@@ -18,7 +18,7 @@ async function main() {
     `INSERT INTO users (email, password, name, role)
      VALUES ($1, $2, $3, 'admin')
      ON CONFLICT (email) DO UPDATE
-     SET password = EXCLUDED.password, name = EXCLUDED.name, role = 'admin', updated_at = NOW()`,
+     SET password = EXCLUDED.password, name = EXCLUDED.name, role = 'admin'`,
     [email, passwordHash, process.env.PROVISION_ADMIN_NAME || 'Runtime Administrator']
   );
 }
