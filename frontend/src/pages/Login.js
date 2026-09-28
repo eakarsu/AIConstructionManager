@@ -213,7 +213,7 @@ export default function Login({ onLogin }) {
             e.target.style.background = '#0f172a';
           }}
         >
-          Fill Demo Credentials (admin@construction.com)
+          Auto Fill Demo Credentials
         </button>
       </div>
     </div>
