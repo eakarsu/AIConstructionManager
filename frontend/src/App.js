@@ -8,6 +8,7 @@ import ChangeOrders from './pages/ChangeOrders';
 import DailyReports from './pages/DailyReports';
 import AICenter from './pages/AICenter';
 import Navbar from './components/Navbar';
+import AppSidebar from './components/AppSidebar';
 
 // // === Batch 02 Gaps & Frontend Mounts ===
 import CfMultiModalProgressTracking from './pages/CfMultiModalProgressTracking';
@@ -152,6 +153,8 @@ function App() {
     <>
       <style>{globalStyles}</style>
       <Router>
+        <div className={isAuth ? 'codex-nav-shell' : undefined}>
+        {isAuth && <AppSidebar features={features} />}
         {isAuth && <Navbar onLogout={handleLogout} features={features} />}
         <Routes>
         <Route path="/insights/timeline" element={<TimelineView />} />
@@ -183,6 +186,7 @@ function App() {
         <Route path="/cf/permitting-regulatory-prediction" element={<CfPermittingRegulatoryPrediction />} />
         <Route path="/custom-views" element={isAuth ? <CustomViewsPage /> : <Navigate to="/login" />} />
       </Routes>
+        </div>
       </Router>
     </>
   );
